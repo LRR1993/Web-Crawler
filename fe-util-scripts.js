@@ -6,6 +6,7 @@ const requestButton = [...document.getElementsByClassName("requestButton")]
 requestButton.addEventListener("click", event => {
   event.preventDefault();
   console.log("requested page for crawling");
-  requestForm(inputField);
+  requestCrawl(inputField);
 });
 
+function requestCrawl(url) {}
