@@ -4,6 +4,8 @@ const http = require('http');
 const fs = require('fs');
 
 const options = new URL('http://broken-links-api.herokuapp.com/');
+const badLinks = [];
+const goodLinks = [];
 
 http
   .get(options, res => {
@@ -13,10 +15,7 @@ http
     if (statusCode !== 200) {
       error = new Error('Request Failed.\n' + `Status Code: ${statusCode}`);
     }
-    // else if (!/^application\/json/.test(contentType)) {
-    //   error = new Error('Invalid content-type.\n' +
-    //     `Expected application/json but received ${contentType}`);
-    // }
+
     if (error) {
       console.error(error.message);
       res.resume();
@@ -36,7 +35,26 @@ http
         while ((result = re.exec(rawData)) !== null) {
           linkArr.push(result[1]);
         }
-        console.log(linkArr);
+
+        linkArr.forEach(link => {
+          http
+            .get(`${options}${link}`, res => {
+              if (res.statusCode !== 200) {
+                fs.appendFile('badlinks.txt', `${options}${link},`, err => {
+                  if (err) throw err;
+                  console.log('The "data to append" was appended to file!');
+                });
+              } else {
+                fs.appendFile('goodlinks.txt', `${options}${link},`, err => {
+                  if (err) throw err;
+                  console.log('The "data to append" was appended to file!');
+                });
+              }
+            })
+            .on('error', e => {
+              console.error(`Got error: ${e.message}`);
+            });
+        });
       } catch (e) {
         console.error(e.message);
       }
@@ -45,10 +63,3 @@ http
   .on('error', e => {
     console.error(`Got error: ${e.message}`);
   });
-
-// if (linkArray.length < 0) {
-//   linkArray.forEach(link =>
-
-//     )
-
-// }
