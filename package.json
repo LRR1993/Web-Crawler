@@ -1,0 +1,22 @@
+{
+  "name": "web-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LRR1993/Web-Crawler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LRR1993/Web-Crawler/issues"
+  },
+  "homepage": "https://github.com/LRR1993/Web-Crawler#readme",
+  "devDependencies": {
+    "google-charts": "^2.0.0"
+  }
+}
