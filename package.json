@@ -16,7 +16,6 @@
     "url": "https://github.com/LRR1993/Web-Crawler/issues"
   },
   "homepage": "https://github.com/LRR1993/Web-Crawler#readme",
-  "devDependencies": {
-    "google-charts": "^2.0.0"
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
